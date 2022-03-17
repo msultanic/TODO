@@ -1,9 +1,27 @@
 import React, {Fragment,useEffect, useState} from "react";
+import InputTodo from "./InputTodo";
 var _ = require('lodash');
 var _ = require('lodash/core');
 
 const List = () => {
     const [todos, setTodos] = useState([]);
+  //   const [description, setDescription] = useState("");
+
+  // const onSubmitForm = async e => {
+  //   e.preventDefault();
+  //   try {
+  //     const body = { description };
+  //     const response = await fetch("http://localhost:9000/todos", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify(body)
+  //     });
+
+  //     window.location = "/";
+  //   } catch (err) {
+  //     console.error(err.message);
+  //   }
+  // };
   
     const deleteTodo = async id => {
       try {
@@ -48,10 +66,19 @@ const List = () => {
   
     console.log(todos);
     
-    // function method1(id){
-    //   console.log("Method 1");
-    //   // var el = document.getElementById(`done{id}`).style.backgroundColor = 'green' ;
-    // }
+    function sakrij(){
+      var btn = document.getElementById("dodaj");
+      // if(btn.innerText=="+ New task"){
+        document.getElementById(`sakrij`).style.display = 'inline-block';
+        document.getElementById(`dodaj`).style.display = 'none';
+
+        // console.log("hej");
+        // }
+      // else{
+      //   btn.innerText="+ New task";
+      //   document.getElementById(`sakrij`).style.display = 'none';
+      //   }
+    }
 
     return (
     <Fragment>
@@ -61,13 +88,12 @@ const List = () => {
             <tr key={todo.id}>
               <td>
                 <button onClick={() => updateDone(todo.id)} className={
-                  todo.done===1 ? 'checkbox completed-checkbox' : 'checkbox'
+                  todo.done===1 ? 'Oval Done' : 'Oval'
                 }>
-                    Done
                 </button>
               </td>
               <td>
-                {todo.description}</td>
+                <span className={ todo.done===1 ? 'Text-Style-2 doneTxt' : 'Text-Style-2'}>{todo.description}</span></td>
               <td>
                 <button onClick={() => deleteTodo(todo.id)}>
                   Delete
@@ -82,6 +108,9 @@ const List = () => {
           ))}
         </tbody>
       </table>
+      <div id="sakrij">
+      <InputTodo/></div>
+      <button className="Rectangle" id="dodaj" onClick={() => sakrij()}>+ New task</button>
     </Fragment>
   );
 };

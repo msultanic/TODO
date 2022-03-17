@@ -10,6 +10,7 @@
       content="Web site created using create-react-app"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -25,6 +26,28 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+    <style>
+      @font-face {
+  font-family: OpenSans;
+  src: local(OpenSans-Semibold),
+    url(/path/to/OpenSans-Semibold.woff2) format("woff2"),
+    url(/path/to/OpenSans-Semibold.woff) format("woff"),
+    url(/path/to/OpenSans-Semibold.ttf) format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-stretch: normal;
+}
+@font-face {
+  font-family: OpenSans;
+  src: local(OpenSans-Bold),
+    url(/path/to/OpenSans-Bold.woff2) format("woff2"),
+    url(/path/to/OpenSans-Bold.woff) format("woff"),
+    url(/path/to/OpenSans-Bold.ttf) format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+}
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

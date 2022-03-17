@@ -12,24 +12,26 @@ const InputTodo = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body)
       });
-
+      sakrij();
       window.location = "/";
     } catch (err) {
       console.error(err.message);
     }
   };
+  function sakrij(){
+    document.getElementById(`sakrijj`).style.display = 'none';
+  }
 
   return (
     <Fragment>
-      <h1 className="text-center mt-5">Pern Todo List</h1>
-      <form className="d-flex mt-5" onSubmit={onSubmitForm}>
+      <form onSubmit={onSubmitForm} id="sakrijj" class="form1">
         <input
           type="text"
-          className="form-control"
+          className="input1"
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
-        <button className="btn btn-success">Add</button>
+        <button className="Rectangle" id="addBtn">+ Add task</button>
       </form>
     </Fragment>
   );
