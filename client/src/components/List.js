@@ -1,5 +1,8 @@
 import React, {Fragment,useEffect, useState} from "react";
 import InputTodo from "./InputTodo";
+import { confirmAlert } from 'react-confirm-alert'; // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+
 var _ = require('lodash');
 var _ = require('lodash/core');
 
@@ -22,10 +25,25 @@ const List = () => {
   //     console.error(err.message);
   //   }
   // };
+
   
-    const deleteTodo = async id => {
+    // const deleteTodo = id => {
+    //   confirmAlert({
+    //     title: 'Confirm to submit',                        // Title dialog
+    //     message: 'Are you sure to do this.',               // Message dialog
+    //     childrenElement: () => <div>Custom UI</div>,       // Custom UI or Component
+    //     confirmLabel: 'Confirm',                           // Text button confirm
+    //     cancelLabel: 'Cancel',                             // Text button cancel
+    //     onConfirm: () => {deleteTask(id)},    // Action after Confirm
+    //     onCancel: () => alert('Action after Cancel'),      // Action after Cancel
+    //     overlayClassName: "overlay-custom-class-name"      // Custom overlay class name
+    //   })
+      
+    // };
+
+    const deleteTask = id => {
       try {
-        const deleteTodo = await fetch(`http://localhost:9000/todos/${id}`, {
+        const deleteTodo = fetch(`http://localhost:9000/todos/${id}`, {
           method: "DELETE"
         });
   
@@ -33,7 +51,7 @@ const List = () => {
       } catch (err) {
         console.error(err.message);
       }
-    };
+    } 
 
     const updateDone = async id => {
       try {
@@ -67,17 +85,8 @@ const List = () => {
     console.log(todos);
     
     function sakrij(){
-      var btn = document.getElementById("dodaj");
-      // if(btn.innerText=="+ New task"){
-        document.getElementById(`sakrij`).style.display = 'inline-block';
-        document.getElementById(`dodaj`).style.display = 'none';
-
-        // console.log("hej");
-        // }
-      // else{
-      //   btn.innerText="+ New task";
-      //   document.getElementById(`sakrij`).style.display = 'none';
-      //   }
+      document.getElementById(`sakrij`).style.display = 'inline-block';
+      document.getElementById(`dodaj`).style.display = 'none';
     }
 
     return (
@@ -95,14 +104,10 @@ const List = () => {
               <td>
                 <span className={ todo.done===1 ? 'Text-Style-2 doneTxt' : 'Text-Style-2'}>{todo.description}</span></td>
               <td>
-                <button onClick={() => deleteTodo(todo.id)}>
-                  Delete
-                </button>
+                <button onClick={() => deleteTask(todo.id)} class="btn"><i class="fa fa-pencil"></i></button>
               </td>
               <td>
-                <button onClick={() => deleteTodo(todo.id)}>
-                  Edit
-                </button>
+                <button onClick={() => deleteTask(todo.id)} class="btn"><i class="fa fa-trash"></i></button>
               </td>
             </tr>
           ))}
