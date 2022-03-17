@@ -22,6 +22,30 @@ app.post("/todos", async (req, res) => {
       return res.status(500).json(err)
     }
   })
+
+  app.post("/todos/all", async (req, res) => {
+    const description = req.body.title
+    try {
+      const todo = await Todos.create({ description})
+      const jane = await User.create({ name: "Jane" });
+
+      todo.set({
+        done: req.body.completed
+      });
+      await jane.save();
+      return res.json(todo)
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json(err)
+    }
+    
+    // console.log("Selaam")
+    // // console.log(req.body)
+    // console.log(description)
+    // return res.json("kako je")
+  })
+
+
   
   app.get('/todos', async (req, res) => {
     try {
