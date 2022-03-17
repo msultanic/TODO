@@ -6,6 +6,7 @@ var _ = require('lodash/core');
 
 const List = () => {
     const [todos, setTodos] = useState([]);
+    const [edit, setEdit] = useState(null);
 
     const deleteTask = id => {
       try {
@@ -43,17 +44,16 @@ const List = () => {
           const jsonData1 = await response1.json();
           sorted=_.sortBy(jsonData1, "id")
           sorted=_.slice(sorted, 0, 20)
-          for(var i=0; i<5; i++){
+          for(var i=0; i<20; i++){
           const saveData = await fetch("http://localhost:9000/todos/all", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(sorted[i])
-        });}
-        
-        
-        const response2 = await fetch("http://localhost:9000/todos");
-        const jsonData2 = await response2.json();
-        var sorted = _.sortBy(jsonData2, "id")}
+          });}
+          const response2 = await fetch("http://localhost:9000/todos");
+          const jsonData2 = await response2.json();
+          var sorted = _.sortBy(jsonData2, "id")
+        }
         setTodos(sorted);
       } catch (err) {
         console.error(err.message);
@@ -84,12 +84,14 @@ const List = () => {
                 </button>
               </td>
               <td>
-                <span className={ todo.done===1 ? 'Text-Style-2 doneTxt' : 'Text-Style-2'}>{todo.description}</span></td>
+                <input className={ todo.done===1 ? 'Text-Style-2 doneTxt' : 'Text-Style-2'} value={todo.description} 
+                  disabled={edit!==todo.id}/></td>
               <td>
-                <button onClick={() => deleteTask(todo.id)} class="btn"><i class="fa fa-pencil"></i></button>
+                <i onClick={() => setEdit(todo.id)} class="fa fa-pencil"></i> 
               </td>
               <td>
-                <button onClick={() => deleteTask(todo.id)} class="btn"><i class="fa fa-trash"></i></button>
+                <i onClick={() => deleteTask(todo.id)} class="fa fa-trash"></i>
+                <div></div>
               </td>
             </tr>
           ))}
