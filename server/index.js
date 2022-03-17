@@ -25,14 +25,17 @@ app.post("/todos", async (req, res) => {
 
   app.post("/todos/all", async (req, res) => {
     const description = req.body.title
+    
     try {
       const todo = await Todos.create({ description})
-      const jane = await User.create({ name: "Jane" });
 
-      todo.set({
-        done: req.body.completed
-      });
-      await jane.save();
+      if(req.body.completed){
+        todo.set({
+          done: 1
+        });
+        console.log("ok je")
+      }
+      await todo.save();
       return res.json(todo)
     } catch (err) {
       console.log(err)
