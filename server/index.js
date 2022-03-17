@@ -1,10 +1,10 @@
 const express = require("express");
-const { sequelize, Todo } = require('../models')
+const { sequelize, Todos } = require('./models')
 const cors=require("cors");
 
 const corsOptions ={
    origin:'*', 
-   credentials:true,            //access-control-allow-credentials:true
+   credentials:true,            
    optionSuccessStatus:200,
 }
 
@@ -15,7 +15,7 @@ app.use(cors(corsOptions))
 app.post("/todos", async (req, res) => {
     const { description } = req.body;
     try {
-      const todo = await Todo.create({ description })
+      const todo = await Todos.create({ description})
       return res.json(todo)
     } catch (err) {
       console.log(err)
@@ -25,7 +25,7 @@ app.post("/todos", async (req, res) => {
   
   app.get('/todos', async (req, res) => {
     try {
-      const todos = await Todo.findAll()
+      const todos = await Todos.findAll()
       return res.json(todos)
     } catch (err) {
       console.log(err)
@@ -34,9 +34,9 @@ app.post("/todos", async (req, res) => {
   })
   
   app.get('/todos/:id', async (req, res) => {
-    const id = req.params.id //trazi mi dvotacku??
+    const id = req.params.id
     try {
-      const todo = await Todo.findOne({
+      const todo = await Todos.findOne({
         where: { id },
         include: 'posts',
       })
@@ -50,7 +50,7 @@ app.post("/todos", async (req, res) => {
   app.delete('/todos/:id', async (req, res) => {
     const id = req.params.id
     try {
-      const todo = await Todo.findOne({ where: { id } })
+      const todo = await Todos.findOne({ where: { id } })
       await todo.destroy()
       return res.json({ message: 'Todo deleted!' })
     } catch (err) {
@@ -63,8 +63,25 @@ app.post("/todos", async (req, res) => {
     const id = req.params.id
     const { description } = req.body
     try {
-      const todo = await Todo.findOne({ where: { id } })
+      const todo = await Todos.findOne({ where: { id } })
       todo.description = description
+      await todo.save()
+      return res.json(todo)
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json({ error: 'Something went wrong' })
+    }
+  })
+  app.put('/todos/done/:id', async (req, res) => {
+    const id = req.params.id
+    try {
+      const todo = await Todos.findOne({ where: { id } })
+      if(todo.done!==null){
+        console.log("selam")
+        todo.done = null
+      }
+      else
+        todo.done = 1
       await todo.save()
       return res.json(todo)
     } catch (err) {
