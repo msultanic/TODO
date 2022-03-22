@@ -38,7 +38,7 @@ body {
 .Motoff-To-do-List {
   width: 135px;
   height: 22px;
-  font-family: OpenSans;
+  font-family: "Open Sans";
   font-size: 16px;
   font-weight: bold;
   font-stretch: normal;
@@ -73,7 +73,7 @@ body {
 }
 
 .Text-Style-2 {
-  font-family: OpenSans;
+  font-family: "Open Sans";
   font-size: 16px;
   /* font-weight: 600; */
   font-stretch: normal;

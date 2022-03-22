@@ -99,16 +99,17 @@ app.post("/todos", async (req, res) => {
       return res.status(500).json({ error: 'Something went wrong' })
     }
   })
+
   app.put('/todos/done/:id', async (req, res) => {
     const id = req.params.id
     try {
       const todo = await Todos.findOne({ where: { id } })
-      if(todo.done!==null){
-        console.log("selam")
-        todo.done = null
-      }
+
+      if(todo.done!==0)
+        todo.done = 0
       else
         todo.done = 1
+
       await todo.save()
       return res.json(todo)
     } catch (err) {

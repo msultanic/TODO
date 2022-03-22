@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       done: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: true // v
     //     validate: {
     //       notNull: { msg: 'User must have a name' },
     //       notEmpty: { msg: 'Name must not be empty' },
