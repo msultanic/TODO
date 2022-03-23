@@ -5,7 +5,7 @@ const Confirm = ({ toggleDialogModal, position }) => {
     <div
       id="confirmDialog"
       style={{
-        top: position.top + 20,
+        top: position.top + 22,
         // right: position.right - 100,
         bottom: position.bottom,
         left: position.left - 70,

@@ -23,7 +23,9 @@ const List = () => {
   };
   const updateDoneDescription = async (id, description) => {
     try {
-      await Axios.put(`http://localhost:9000/todos/${id}`, { description });
+      await Axios.put(`${process.env.REACT_APP_API_URL}/todos/${id}`, {
+        description,
+      });
       getTodos();
     } catch (err) {
       console.error(err.message);
@@ -39,7 +41,7 @@ const List = () => {
 
       var sorted = jsonData.sort((a, b) => a.id - b.id);
 
-      console.log(sorted);
+      // console.log(sorted);
       if (sorted.length === 0) {
         let { data } = await Axios.get(
           "https://jsonplaceholder.typicode.com/todos"
@@ -120,7 +122,10 @@ const List = () => {
                   onMouseLeave={() => setHovered(0)}
                 >
                   <button
-                    onClick={() => updateDone(todo.id)}
+                    onClick={() => {
+                      setEdit(null);
+                      updateDone(todo.id);
+                    }}
                     className={
                       todo.completed
                         ? "task__complete-button Done"
@@ -176,12 +181,12 @@ const List = () => {
                           setIsHideNewTackButton(false);
                           if (e) {
                             var rect = e.target.getBoundingClientRect();
-                            console.log(
-                              rect.top,
-                              rect.right,
-                              rect.bottom,
-                              rect.left
-                            );
+                            // console.log(
+                            //   rect.top,
+                            //   rect.right,
+                            //   rect.bottom,
+                            //   rect.left
+                            // );
                             setPosition(rect);
                           }
                           setDialogModalOpen(todo.id);
