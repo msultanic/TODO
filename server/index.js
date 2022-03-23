@@ -28,27 +28,14 @@ app.post("/todos", async (req, res) => {
     
     try {
       const todo = await Todos.create({ description})
-
-      if(req.body.completed){
-        todo.set({
-          done: 1
-        });
-        console.log("ok je")
-      }
+      todo.completed = req.body.completed
       await todo.save();
       return res.json(todo)
     } catch (err) {
       console.log(err)
       return res.status(500).json(err)
     }
-    
-    // console.log("Selaam")
-    // // console.log(req.body)
-    // console.log(description)
-    // return res.json("kako je")
   })
-
-
   
   app.get('/todos', async (req, res) => {
     try {
@@ -104,12 +91,7 @@ app.post("/todos", async (req, res) => {
     const id = req.params.id
     try {
       const todo = await Todos.findOne({ where: { id } })
-
-      if(todo.done!==0)
-        todo.done = 0
-      else
-        todo.done = 1
-
+      todo.completed=!todo.completed
       await todo.save()
       return res.json(todo)
     } catch (err) {

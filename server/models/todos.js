@@ -1,11 +1,8 @@
-'use strict'
-const { Model } = require('sequelize')
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Todos extends Model {
-
-    static associate(models) {
-    }
-
+    static associate(models) {}
   }
 
   Todos.init(
@@ -13,25 +10,18 @@ module.exports = (sequelize, DataTypes) => {
       description: {
         type: DataTypes.STRING,
         allowNull: false,
-    //     validate: {
-    //       notNull: { msg: 'User must have a name' },
-    //       notEmpty: { msg: 'Name must not be empty' },
-    //     },
       },
-      done: {
-        type: DataTypes.INTEGER,
-        allowNull: true // v
-    //     validate: {
-    //       notNull: { msg: 'User must have a name' },
-    //       notEmpty: { msg: 'Name must not be empty' },
-    //     },
-      }
+      completed: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
     },
     {
       sequelize,
-      tableName: 'tasks',
-      modelName: 'Todos',
+      tableName: "todos",
+      modelName: "Todos",
     }
-  )
-  return Todos
-}
+  );
+  return Todos;
+};

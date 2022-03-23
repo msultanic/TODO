@@ -1,43 +1,20 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.doneTxt {
+  text-decoration: line-through;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-} */
-
-* {
-  padding: 0;
-  margin: 0;
-}
-
-body {
-  display: grid;
-  justify-items: center;
-  background-color: #e3e9ff;
-}
-
-.navigacija {
-  display: grid;
-  width: 345px;
-  height: 54px;
+.Done {
   background-color: #af7eeb;
-  box-shadow: 0 2px 7px -2px rgba(0, 0, 0, 0.15);
-  margin-bottom: 15px;
-  margin-top: 90px;
-  justify-items: center;
-  align-items: center;
 }
 
-.Motoff-To-do-List {
-  width: 135px;
-  height: 22px;
+.Rectangle {
+  width: 152px;
+  height: 45px;
+  margin: -23px 154px 70px 97px;
+  position: fixed;
+  /* margin: 0px 100px 0px 97px; */
+  /* padding: 12px 32px 11px; */
+  border-radius: 22.5px;
+  background-color: #af7eeb;
   font-family: "Open Sans";
   font-size: 16px;
   font-weight: bold;
@@ -46,54 +23,7 @@ body {
   line-height: normal;
   letter-spacing: normal;
   color: #fff;
-}
-
-.lista {
-  width: 345px;
-  height: 237px;
-  box-shadow: 0 2px 7px -2px rgba(0, 0, 0, 0.15);
-  background-color: #fff;
-  padding-bottom: 50px;
-  padding-top: 34px;
-  padding-left: 46px;
-  margin-bottom: -22px;
-}
-
-.Oval {
-  width: 10px;
-  height: 10px;
-  /* margin-left: 45px; */
-  border: solid 1px #8e96b8;
-  background-color: #f8f8fb;
-  border-radius: 50%;
-}
-
-.Done {
-  background-color: #af7eeb;
-}
-
-.Text-Style-2 {
-  font-family: "Open Sans";
-  font-size: 16px;
-  /* font-weight: 600; */
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #8e96b8;
-}
-
-.doneTxt {
-  text-decoration: line-through;
-}
-
-.Rectangle {
-  width: 152px;
-  height: 45px;
-  margin: 0px 154px 0px 97px;
-  /* padding: 12px 32px 11px; */
-  border-radius: 22.5px;
-  background-color: #af7eeb;
+  border: none;
 }
 
 #sakrij {
@@ -108,7 +38,8 @@ body {
 }
 
 #addBtn {
-  margin-top: 30px;
+  position: fixed;
+  margin-top: 35px;
 }
 
 .input1 {
@@ -119,4 +50,194 @@ body {
   border-radius: 4px;
   border: solid 1px #949cbc;
   background-color: #f9f9f8;
+
+  box-shadow: 0 2px 7px -2px rgba(0, 0, 0, 0.15);
 }
+
+body {
+  background: #e3e9ff;
+  text-rendering: geometricPrecision;
+}
+
+.to-do {
+  max-width: 345px;
+}
+
+.to-do__header {
+  height: 54px;
+  width: 100%;
+  background-color: #af7eeb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.header-heading {
+  font-family: "Open Sans";
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: normal;
+  color: #ffffff;
+}
+
+.h-menu {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+}
+
+.to-do__container {
+  margin-top: 16px;
+  padding: 24px 17px 32px 24px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  background: #ffffff;
+  max-height: 237px;
+  overflow: auto;
+  min-height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.task {
+  width: 100%;
+  position: relative;
+  padding-left: 32px;
+  margin: 12px 0;
+}
+
+.task > * {
+  cursor: pointer;
+}
+
+.task__complete-button {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 1px solid #8e96b8;
+  border-radius: 20px;
+  background: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.task__input {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: normal;
+  color: #8e96b8;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 8px;
+}
+
+.active {
+  border-radius: 4px;
+  border: solid 1px #949cbc;
+  background-color: #f9f9f8;
+}
+
+.show {
+  display: "inline";
+}
+
+.hide {
+  display: none;
+}
+
+.fa-pencil {
+  color: #8e96b8;
+  margin-right: 8px;
+  margin-left: 18px;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.fa-trash {
+  color: #8e96b8;
+  width: 20px;
+  height: 20px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+}
+
+.Done {
+  background-color: #af7eeb;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.modal_button_container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+#confirmDialog {
+  width: 119px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* margin: 116px 75px 52px 9px; */
+  padding: 11px 13px;
+  border-radius: 4px;
+  border: solid 1px #c6cada;
+  background-color: #fff;
+  position: absolute;
+  color: #8e96b8;
+  z-index: 100;
+  /* top: 40px; */
+  /* right: -50px; */
+  cursor: unset;
+  /* display: none; */
+}
+
+#confirmDialog > div > span {
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: "Open Sans";
+}
+
+#confirmDialog > p {
+  margin: 0;
+  font-family: "Open Sans";
+}
+p {
+  font-family: "Open Sans";
+}
+
+button {
+  cursor: pointer;
+}
+
+.text {
+  cursor: text;
+}
+
+.deleteTxt {
+  text-decoration: line-through;
+}
+/* uraditi box shadow */
+/* dodati kursor misa unutar inputa */
+/* pozicija ikona */

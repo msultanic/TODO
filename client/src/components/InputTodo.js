@@ -1,16 +1,14 @@
 import React, { Fragment, useState } from "react";
+import Axios from "axios";
 
 const InputTodo = () => {
   const [description, setDescription] = useState("");
 
-  const onSubmitForm = async e => {
+  const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
-      const body = { description };
-      const response = await fetch("http://localhost:9000/todos", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
+      await Axios.post(`${process.env.REACT_APP_API_URL}/todos`, {
+        description,
       });
       sakrij();
       window.location = "/";
@@ -18,20 +16,23 @@ const InputTodo = () => {
       console.error(err.message);
     }
   };
-  function sakrij(){
-    document.getElementById(`sakrijj`).style.display = 'none';
+
+  function sakrij() {
+    document.getElementById(`sakrijj`).style.display = "none";
   }
 
   return (
     <Fragment>
-      <form onSubmit={onSubmitForm} id="sakrijj" class="form1">
+      <form onSubmit={onSubmitForm} id="sakrijj" className="form1">
         <input
           type="text"
           className="input1"
           value={description}
-          onChange={e => setDescription(e.target.value)}
+          onChange={(e) => setDescription(e.target.value)}
         />
-        <button className="Rectangle" id="addBtn">+ Add task</button>
+        <button className="Rectangle" id="addBtn">
+          + Add task
+        </button>
       </form>
     </Fragment>
   );
