@@ -10,7 +10,7 @@ const corsOptions ={
 
 const app = express();
 app.use(express.json());
-app.use(cors(corsOptions)) 
+app.use(cors(corsOptions))
 
 app.post("/todos", async (req, res) => {
     const { description } = req.body;
@@ -103,4 +103,6 @@ app.post("/todos", async (req, res) => {
   app.listen({port:9000}, async() => {
     console.log("server has started on port 9000")
     await sequelize.authenticate()
+    await sequelize.sync({force: false, alter: true});
+
   })
